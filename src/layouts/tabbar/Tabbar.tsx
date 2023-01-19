@@ -13,6 +13,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { Menu, MenuItem } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Badge, { BadgeProps } from "@mui/material/Badge";
 
 const pages = [
   {
@@ -41,6 +43,15 @@ const pages = [
     menuItems: ["none"],
   },
 ];
+
+const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
 
 export default function Tabbar() {
   return (
@@ -122,7 +133,9 @@ export default function Tabbar() {
             </Tooltip>
             <Tooltip title="Cart">
               <IconButton sx={{ p: 0 }}>
-                <ShoppingCartIcon sx={{ color: "#A4A4A4" }} />
+                <StyledBadge badgeContent={4} color="primary">
+                  <ShoppingCartIcon sx={{ color: "#A4A4A4" }} />
+                </StyledBadge>
               </IconButton>
             </Tooltip>
           </Box>
