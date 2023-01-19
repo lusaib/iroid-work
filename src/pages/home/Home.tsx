@@ -1,11 +1,22 @@
-import { Box, Breadcrumbs, Link, Typography } from "@mui/material";
+import {
+  Box,
+  Breadcrumbs,
+  Link,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 // import React, { useState } from "react";
 import { HomeBackground, HomeCenterPart } from "./HomeStyling";
 import { Navbar, Tabbar } from "../../layouts";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HomeIcon from "@mui/icons-material/Home";
+import { useTheme } from "@mui/material/styles";
 
 export default function Home() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  // const smallMatches = useMediaQuery(theme.breakpoints.up("xl"));
+
   return (
     <>
       <HomeBackground>
@@ -17,7 +28,7 @@ export default function Home() {
               display: "flex",
               jusityContent: "start",
               width: "100%",
-              ml: 23,
+              ml: !matches ? 8 : 20,
               mt: 1,
               mb: 5,
             }}
@@ -55,7 +66,7 @@ export default function Home() {
               Happiness is our Culture
             </Typography>
           </Box>
-          <Box sx={{ marginInline: 20, mb: 5 }}>
+          <Box sx={{ marginInline: !matches ? 5 : 20, mb: 5 }}>
             <Typography
               variant="h6"
               component="div"

@@ -12,11 +12,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import { Menu, MenuItem } from "@mui/material";
+import { Menu, MenuItem, useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Badge, { BadgeProps } from "@mui/material/Badge";
+import { useTheme } from "@mui/material/styles";
 
-const pages = [
+export const pages = [
   {
     title: "HOME",
     hasMenu: false,
@@ -54,6 +55,9 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 export default function Tabbar() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
     <AppBar
       position="relative"
@@ -85,12 +89,16 @@ export default function Tabbar() {
             LOGO
           </Typography>
 
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AdbIcon
+            color="primary"
+            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+          />
           <Typography
             variant="h5"
             noWrap
             component="a"
             href=""
+            color="primary"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -98,12 +106,11 @@ export default function Tabbar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "primary",
               textDecoration: "none",
             }}
           >
             LOGO
-          </Typography> */}
+          </Typography>
           <Box
             sx={{
               flexGrow: 1,
@@ -124,8 +131,7 @@ export default function Tabbar() {
               />
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0, mr: 5 }}>
+          <Box sx={{ flexGrow: 0, mr: !matches ? 2 : 5 }}>
             <Tooltip title="Search">
               <IconButton sx={{ p: 0, mr: 2 }}>
                 <SearchIcon sx={{ color: "#A4A4A4" }} />
